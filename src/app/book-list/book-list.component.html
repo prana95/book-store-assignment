@@ -1,7 +1,7 @@
 <app-search></app-search>
 <div class="container" *ngFor='let book of books$ | async; let i =index'>
     <div class="card">
-        <a routerLink="/book-detail/{{book.index}}">
+        <a routerLink="/book-detail" [queryParams] ="{id:i}">
           <img class="image" src= {{book.cover}} alt={{book.title}}>
           <div class="container">
             <h4><b>{{book.title}}</b></h4>
