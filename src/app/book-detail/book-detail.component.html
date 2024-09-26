@@ -1,5 +1,6 @@
 <!-- Tester si un pokemon existe pour executer ce bloc de code -->
-<div *ngIf="bookToDisplay" class="row">
+<div class="row">
+  <div *ngIf="bookToDisplay$|async as bookToDisplay"  >
     <div class="col s12 m8 offset-m2">
       <h2 class="header center">{{ bookToDisplay.title }}</h2>
       <div class="card horizontal hoverable">
@@ -45,6 +46,7 @@
       </div>
     </div>
   </div>
+  </div>
   
-  <h4 *ngIf='!bookToDisplay' class="center">Aucun book à afficher !</h4>
+  <h4 *ngIf=" elementHide"  class="center">Aucun book à afficher !</h4>  
   

@@ -16,23 +16,36 @@ export class BookDetailComponent implements OnInit{
 
 errorMessage =''
 identifiant!:number
-bookToDisplay?:Book ;
+bookToDisplay$ = this.bookService.book$.pipe(
+  filter(Boolean),
+  catchError(err=>{
+    this.errorMessage = err;
+    return EMPTY
+  })
+);
+lengthBook = 8 //this line should the length of books
+elementHide =false
 
 
 constructor(private route:ActivatedRoute,private router : Router,private bookService:BookService){}
-// bookToDisplay$ = this.bookService.book$.pipe(
-//   filter(Boolean),
-//   catchError(err=>{
-//     this.errorMessage = err;
-//     return EMPTY
-//   })
-// )
+
 
 ngOnInit(): void {
-  this.bookService.book$.subscribe(book=>this.bookToDisplay=book)
-
+  
   this.route.queryParams.subscribe(params=>{
-    this.bookService.bookSelected(params['id'])
+    console.log('params = '+ params['id'])
+    this.bookService.bookSelected(+params['id']) // so if i use queryParams or parmamap the param got by the angular is string so i need to change it to number type
+    if(this.lengthBook<=parseInt(params['id']) ){
+      this.elementHide = true
+      console.log('if block');
+      
+    }
+    else{
+      this.elementHide = false
+      console.log('else block');
+
+    }
+    //this.bookService.book$.subscribe(book=>this.bookToDisplay=book)
   })
 //this.bookToDisplay$.subscribe(book=>this.bookToDisplay=book)
   

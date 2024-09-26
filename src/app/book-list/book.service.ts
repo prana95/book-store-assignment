@@ -14,17 +14,16 @@ export class BookService {
 
   constructor(private http:HttpClient) { }
 
-  books$ = this.http.get<Book[]>(this.bookUrl).pipe(
+  readonly books$ = this.http.get<Book[]>(this.bookUrl).pipe(
     tap(x=>x)
   )
 
-  book$ = this.bookSelected$.pipe(
-    filter(Boolean),
+  readonly book$ = this.bookSelected$.pipe(
     switchMap(id=>{
       return this.http.get<Book[]>(this.bookUrl).pipe(
         tap(books => console.log('All books:', books)), // Log all books
-        //tap(()=>console.log('identifiant =' +id)),
-        map((books: Book[],id) => { // so find the problem i wasn't adding id to the param so it was considerning a string thats y i had the error when i was usinf === now it is ok
+        tap(()=>console.log('identifiant =' +id)),
+        map((books: Book[]) => { // so find the problem i wasn't adding id to the param so it was considerning a string thats y i had the error when i was usinf === now it is ok
           console.log('identifiant =' +id );
           const singleBook = books.find((book,index) => {
             console.log(`Checking book: ${book}`,); // Log each book to verify property
@@ -65,6 +64,7 @@ export class BookService {
   }
 
   bookSelected(id:number):void{
+    console.log('id = '+id);
     this.bookSelectedSubject.next(id)
   }
 
