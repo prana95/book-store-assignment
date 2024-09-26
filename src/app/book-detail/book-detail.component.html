@@ -1,0 +1,56 @@
+<!-- Tester si un pokemon existe pour executer ce bloc de code -->
+<div *ngIf="bookToDisplay!=undefined" class="row">
+    <div class="col s12 m8 offset-m2">
+      <h2 class="header center">{{ bookToDisplay.title }}</h2>
+      <div class="card horizontal hoverable">
+        <div class="card-image">
+          <img [src]="bookToDisplay.cover">
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <table class="bordered striped">
+              <tbody>
+              <tr>
+                <td>title</td>
+                <td><strong>{{ bookToDisplay.title }}</strong></td>
+              </tr>
+              <tr>
+                <td>originalTitle</td>
+                <td><strong>{{ bookToDisplay.originalTitle }}</strong></td>
+              </tr>
+              <tr>
+                <td>releaseDate</td>
+                <td><strong>{{ bookToDisplay.releaseDate }}</strong></td>
+              </tr>
+              <tr>
+                <td>description</td>
+                <td><strong>{{ bookToDisplay.description }}</strong></td>
+              </tr><tr>
+                <td>pages</td>
+                <td><strong>{{ bookToDisplay.pages }}</strong></td>
+              </tr><tr>
+                <td>index</td>
+                <td><strong>{{ bookToDisplay.index }}</strong></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-action">
+            <a type="button" class="waves-effect waves-light btn margin-button" (click)="goBack()">Retour</a>
+            <a type="button" class="waves-effect waves-light btn margin-button" (click)="editerBook(bookToDisplay)">Edit</a>
+            <a type="button" class="waves-effect waves-light btn" (click) = "deletePokemon(bookToDisplay)" >Supprimer</a>
+        </div>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Sinon, si aucun pokemon n'a été trouvé on execute cette partie -->
+ 
+  <!--<h4 *ngIf='!bookToDisplay' class="center">
+    <app-detail-pokemon></app-detail-pokemon>
+  </h4> -->
+  <!-- <h4 *ngIf='!bookToDisplay' class="center">{{title}}</h4>-->
+  <h4 *ngIf='!bookToDisplay' class="center">Aucun pokémon à afficher !</h4>
+  
