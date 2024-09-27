@@ -28,6 +28,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 # Angular Assignments
+
+Url to see the Assignments : http://localhost:4200/book-list 
+
 ## Assignment 01:
 Create a basic Angular application that displays a list of books using 
 ngFor directive. Each book should be displayed with its title, author, and cover image. The 
